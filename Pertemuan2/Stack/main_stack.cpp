@@ -25,7 +25,7 @@ void RenderScene(void)
     glPopMatrix();
 
     glPushMatrix();
-        glTranslatef(-0.50, 0.50, 0.0);
+        glTranslatef(0.50, 0.50, 0.0);
         glBegin(GL_TRIANGLE_STRIP);
             glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(-0.05, -0.05, 0.00);
             glColor3f(0.0f, 1.0f, 0.0f); glVertex3f( 0.15, -0.05, 0.00);
@@ -36,16 +36,18 @@ void RenderScene(void)
 
     glPushMatrix();
         #define PI 3.1415926535898
-        int circle_points = 100;
+        glBegin(GL_LINE_LOOP);
+        
         float angle;
         glTranslatef(0.50, -0.50, 0.0);
         glBegin(GL_LINE_LOOP);
-            for (int i = 0; i < circle_points; i++)
-            {
-                angle = 2 * PI * i / circle_points;
-                glVertex2f(cos(angle) * 0.1, sin(angle) * 0.1);
-            }
-        glEnd();
+	        GLint circle_points = 100; int i;
+	            for (int i = 0; i < circle_points; i++)
+	            {
+	                angle = 2 * PI * i / circle_points;
+	                glVertex2f(cos(angle), sin(angle));
+	            }
+	        glEnd();
     glPopMatrix();
 
     glFlush();
@@ -56,7 +58,7 @@ int main(int argc, char* argv[])
     glutInit(&argc, argv);
     glutInitWindowSize(640, 480);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
-    glutCreateWindow("Stack Objek");
+    glutCreateWindow("Simple");
     glutDisplayFunc(RenderScene);
     glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
     glutMainLoop();
